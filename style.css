@@ -1,0 +1,50 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: black;
+    height: 90vh;
+    aspect-ratio: 4/7;
+}
+
+#display{
+    aspect-ratio: 5/2;
+    margin: 5px;
+    background-color: rgb(24, 24, 24);
+    color: white;
+    border-radius: 10px;
+    font-size: 100px;
+    text-align: right;
+}
+
+.row {
+    display: flex;
+    margin: 5px 0;
+}
+
+.button {
+    margin: 0 5px;
+    border-radius: 50%;
+    width: 50px;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: auto;
+    font-size: 40px;
+}
+
+.special {
+    background-color: rgb(165, 165, 165);
+    color: black;
+}
+
+.number {
+    background-color: rgb(43, 43, 43);
+    color: white;
+}
+
+.operator {
+    background-color: rgb(236, 143, 12);
+    color: white;
+}
