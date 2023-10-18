@@ -3,8 +3,9 @@
     flex-direction: column;
     padding: 10px;
     background-color: black;
+    border-radius: 10px;
     height: 90vh;
-    aspect-ratio: 4/7;
+    aspect-ratio: 6/10;
 }
 
 #display{
@@ -13,7 +14,7 @@
     background-color: rgb(24, 24, 24);
     color: white;
     border-radius: 10px;
-    font-size: 100px;
+    font-size: 80px;
     text-align: right;
 }
 

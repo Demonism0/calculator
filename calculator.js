@@ -1,82 +1,103 @@
 function add(a, b) {
-    return a + b;
+    return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
-    return a - b;
+    return Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-    return a * b;
+    return Number(a) * Number(b);
 }
 
 function divide(a, b) {
-    return a / b;
+    return Number(a) / Number(b);
 }
 
-let numberA = 0;
-let numberB;
-let operator;
-
-function operate(operator, numberA, numberB) {
-    operator(numberA, numberB);
-}
-
-const display = document.querySelector('#display');
-
-function updateDisplay(operatorParam, numberAParam, numberBParam) {
-    if (operatorParam === undefined || val == null || val.length <= 0) {
-        console.log('runningA');
-        display.textContent = numberAParam;
+function operate() {
+    if (operator === undefined) {
+        return numberA;
+    } else if (numberB === undefined) {
+        return operator(numberA, numberA);
     } else {
-        console.log('runningB');
-        display.textContent = numberBParam;
+        return operator(numberA, numberB);
     }
 }
 
-function numberClick(button, operatorParam, numberAParam, numberBParam) {
-    if (operatorParam === undefined || val == null || val.length <= 0) {
+function updateDisplay() {
+    if (operator === undefined) {
+        console.log('runningA');
+        if (String(numberA).length > 10) {
+            numberA = Number(String(numberA).slice(0,10));
+        }
+        display.textContent = numberA;
+    } else {
+        console.log('runningB');
+        display.textContent = numberB;
+    }
+}
+
+function numberClick(button) {
+    if (operator === undefined) {
         console.log('clickA')
         if (String(numberA).length < 10) {
-            numberA = '' + numberAParam + button.textContent;
+            numberA = '' + numberA + button.textContent;
             numberA = Number(numberA);
         }
     } else {
         console.log('clickB')
         if (String(numberB).length < 10) {
-            numberB = '' + numberBParam + button.textContent;
-            numberB = Number(numberB);
+            if (numberB === undefined) {
+                numberB = button.textContent;
+            } else {
+                numberB = '' + numberB + button.textContent;
+                numberB = Number(numberB);
+            }  
         }
     }
 }
 
-function decimalClick(operatorParam, numberAParam, numberBParam) {
-    if (operatorParam === undefined || val == null || val.length <= 0) {
+function decimalClick() {
+    if (operator === undefined) {
         if (String(numberA).includes('.')) {
         } else if (String(numberA).length < 10) {
-            numberA = '' + numberAParam + '.'
+            numberA = '' + numberA + '.'
         }
     } else {
         if (String(numberB).includes('.')) {
-        } else if (String(numberb).length < 10) {
-            numberB = '' + numberBParam + '.'
+        } else if (String(numberB).length < 10) {
+            if (numberB === undefined) {
+                numberB = '0.';
+            } else {
+                numberB = '' + numberB + '.';
+            }
         }
     }
 }
 
-function zeroClick(button, operatorParam, numberAParam, numberBParam) {
-    if (operatorParam === undefined || val == null || val.length <= 0) {
+function zeroClick(button) {
+    if (operator === undefined) {
         if (String(numberA) === '0') {
         } else if (String(numberA).length < 10) {
-            numberA = '' + numberAParam + button.textContent
+            numberA = '' + numberA + button.textContent
         }
     } else {
         if (String(numberB) === '0') {
-        } else if (String(numberb).length < 10) {
-            numberB = '' + numberBParam + button.textContent
+        } else if (String(numberB).length < 10) {
+            if (numberB === undefined) {
+                numberB = 0;
+            } else {
+                numberB = '' + numberB + button.textContent;
+            }
         }
     }
 }
+
+let numberA = 0;
+let numberB = undefined;
+let operator = undefined;
+
+const display = document.querySelector('#display');
 
 const decimalBtn = document.querySelector('#decimal');
 const zeroBtn = document.querySelector('#zero');
@@ -92,58 +113,54 @@ const eightBtn = document.querySelector('#eight');
 const nineBtn = document.querySelector('#nine');
 
 decimalBtn.addEventListener('click', () => {
-    decimalClick( operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    decimalClick();
+    updateDisplay();
 });
 zeroBtn.addEventListener('click', () => {
-    zeroClick(zeroBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    zeroClick(zeroBtn);
+    updateDisplay();
 });
 dblZeroBtn.addEventListener('click', () => {
-    zeroClick(dblZeroBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    zeroClick(dblZeroBtn);
+    updateDisplay();
 });
 oneBtn.addEventListener('click', () => {
     console.log('click');
-    numberClick(oneBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB)
+    numberClick(oneBtn);
+    updateDisplay()
 });
 twoBtn.addEventListener('click', () => {
-    numberClick(twoBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(twoBtn);
+    updateDisplay();
 });
 threeBtn.addEventListener('click', () => {
-    numberClick(threeBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(threeBtn);
+    updateDisplay();
 });
 fourBtn.addEventListener('click', () => {
-    numberClick(fourBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(fourBtn);
+    updateDisplay();
 });
 fiveBtn.addEventListener('click', () => {
-    numberClick(fiveBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(fiveBtn);
+    updateDisplay();
 });
 sixBtn.addEventListener('click', () => {
-    numberClick(sixBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(sixBtn);
+    updateDisplay();
 });
 sevenBtn.addEventListener('click', () => {
-    numberClick(sevenBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(sevenBtn);
+    updateDisplay();
 });
 eightBtn.addEventListener('click', () => {
-    numberClick(eightBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(eightBtn);
+    updateDisplay();
 });
 nineBtn.addEventListener('click', () => {
-    numberClick(nineBtn, operator, numberA, numberB);
-    updateDisplay(operator, numberA, numberB);
+    numberClick(nineBtn);
+    updateDisplay();
 });
-
-const clearBtn = document.querySelector('#clear');
-const backspaceBtn = document.querySelector('#backspace');
-const negPosBtn = document.querySelector('#negpos');
 
 const divideBtn = document.querySelector('#divide');
 const multiplyBtn = document.querySelector('#multiply');
@@ -151,13 +168,135 @@ const subtractBtn = document.querySelector('#subtract');
 const addBtn = document.querySelector('#add');
 const equalsBtn = document.querySelector('#equals');
 
-updateDisplay(operator, numberA, numberB);
+equalsBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    numberA = operate();
+    operator = undefined;
+    numberB = undefined;
+    updateDisplay();
+})
 
-// create function for add, subtract, multiply, divide
-// create three variables for the first number, operator, second number
-// create a function operate() that takes an operator and two numbers
+divideBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    divideBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
+    if (numberB !== undefined) {
+        numberA = operate();
+    }
+    operator = undefined;
+    numberB = undefined;
+    updateDisplay();
+    operator = divide;
+})
 
-// textContent for #display to be numberA or numberB
-// numberA defaults to zero
-// if operator is not assigned a function, numbers and decimals will append to numberA
-// create query selectors for all the numbers
+multiplyBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
+    if (numberB !== undefined) {
+        numberA = operate();
+    }
+    operator = undefined;
+    numberB = undefined;
+    updateDisplay();
+    operator = multiply;
+})
+
+subtractBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
+    if (numberB !== undefined) {
+        numberA = operate();
+    }
+    operator = undefined;
+    numberB = undefined;
+    updateDisplay();
+    operator = subtract;
+})
+
+addBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
+    if (numberB !== undefined) {
+        numberA = operate();
+    }
+    operator = undefined;
+    numberB = undefined;
+    updateDisplay();
+    operator = add;
+})
+
+const clearBtn = document.querySelector('#clear');
+const backspaceBtn = document.querySelector('#backspace');
+const negPosBtn = document.querySelector('#negpos');
+
+clearBtn.addEventListener('click', () => {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    numberB = undefined;
+    operator = undefined;
+    numberA = 0;
+    updateDisplay();
+})
+
+backspaceBtn.addEventListener('click', () => {
+    if (operator === undefined) {
+        numberA = String(numberA);
+        numberA = numberA.slice(0, numberA.length -1);
+        if (numberA === '-' || String(numberA) === '') {
+            numberA = 0;
+        }
+    } else if (numberB === undefined || String(numberB) === '' || String(numberB) === '-0') {
+        divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+        multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+        subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+        addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+        numberB = undefined;
+        operator = undefined;
+    } else {
+        numberB = String(numberB);
+        numberB = numberB.slice(0, numberB.length -1);
+        if (numberB === '-' || String(numberB) === '') {
+            numberB = undefined;
+        }
+    }
+    updateDisplay();
+})
+
+negPosBtn.addEventListener('click', () => {
+    if (operator !== undefined) {
+        if (numberB !== undefined) {
+            if (numberB < 0 || String(numberB) === '-0') {
+                numberB = String(numberB).replace('-', '')
+            } else {
+                numberB = '-' + numberB;
+            }
+        } else {
+            numberB = '-0';
+        }
+    } else {
+        if (numberA < 0 || String(numberA) === '-0') {
+            numberA = String(numberA).replace('-', '')
+        } else {
+            numberA = '-' + numberA;
+        }
+    }
+    updateDisplay();
+})
+
+updateDisplay();
