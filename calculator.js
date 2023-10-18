@@ -26,26 +26,22 @@ function operate() {
 
 function updateDisplay() {
     if (operator === undefined) {
-        console.log('runningA');
         if (String(numberA).length > 10) {
             numberA = Number(String(numberA).slice(0,10));
         }
         display.textContent = numberA;
     } else {
-        console.log('runningB');
         display.textContent = numberB;
     }
 }
 
 function numberClick(button) {
     if (operator === undefined) {
-        console.log('clickA')
         if (String(numberA).length < 10) {
             numberA = '' + numberA + button.textContent;
             numberA = Number(numberA);
         }
     } else {
-        console.log('clickB')
         if (String(numberB).length < 10) {
             if (numberB === undefined) {
                 numberB = button.textContent;
@@ -77,12 +73,12 @@ function decimalClick() {
 
 function zeroClick(button) {
     if (operator === undefined) {
-        if (String(numberA) === '0') {
+        if (String(numberA) === '0' || String(numberA) === '-0') {
         } else if (String(numberA).length < 10) {
             numberA = '' + numberA + button.textContent
         }
     } else {
-        if (String(numberB) === '0') {
+        if (String(numberB) === '0' || String(numberB) === '-0') {
         } else if (String(numberB).length < 10) {
             if (numberB === undefined) {
                 numberB = 0;
@@ -125,7 +121,6 @@ dblZeroBtn.addEventListener('click', () => {
     updateDisplay();
 });
 oneBtn.addEventListener('click', () => {
-    console.log('click');
     numberClick(oneBtn);
     updateDisplay()
 });
