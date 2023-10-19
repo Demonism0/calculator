@@ -35,6 +35,13 @@ function updateDisplay() {
     }
 }
 
+function createNumberBtn(button) {
+    button.addEventListener('click', () => {
+        numberClick(button);
+        updateDisplay();
+    })
+}
+
 function numberClick(button) {
     if (operator === undefined) {
         if (String(numberA).length < 10) {
@@ -89,6 +96,13 @@ function zeroClick(button) {
     }
 }
 
+function clearColors() {
+    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+}
+
 let numberA = 0;
 let numberB = undefined;
 let operator = undefined;
@@ -108,6 +122,9 @@ const sevenBtn = document.querySelector('#seven');
 const eightBtn = document.querySelector('#eight');
 const nineBtn = document.querySelector('#nine');
 
+const numBtns = [oneBtn, twoBtn, threeBtn, fourBtn, fiveBtn, sixBtn, sevenBtn, eightBtn, nineBtn];
+numBtns.forEach((numBtn) => createNumberBtn(numBtn));
+
 decimalBtn.addEventListener('click', () => {
     decimalClick();
     updateDisplay();
@@ -120,42 +137,6 @@ dblZeroBtn.addEventListener('click', () => {
     zeroClick(dblZeroBtn);
     updateDisplay();
 });
-oneBtn.addEventListener('click', () => {
-    numberClick(oneBtn);
-    updateDisplay()
-});
-twoBtn.addEventListener('click', () => {
-    numberClick(twoBtn);
-    updateDisplay();
-});
-threeBtn.addEventListener('click', () => {
-    numberClick(threeBtn);
-    updateDisplay();
-});
-fourBtn.addEventListener('click', () => {
-    numberClick(fourBtn);
-    updateDisplay();
-});
-fiveBtn.addEventListener('click', () => {
-    numberClick(fiveBtn);
-    updateDisplay();
-});
-sixBtn.addEventListener('click', () => {
-    numberClick(sixBtn);
-    updateDisplay();
-});
-sevenBtn.addEventListener('click', () => {
-    numberClick(sevenBtn);
-    updateDisplay();
-});
-eightBtn.addEventListener('click', () => {
-    numberClick(eightBtn);
-    updateDisplay();
-});
-nineBtn.addEventListener('click', () => {
-    numberClick(nineBtn);
-    updateDisplay();
-});
 
 const divideBtn = document.querySelector('#divide');
 const multiplyBtn = document.querySelector('#multiply');
@@ -164,10 +145,7 @@ const addBtn = document.querySelector('#add');
 const equalsBtn = document.querySelector('#equals');
 
 equalsBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     numberA = operate();
     operator = undefined;
     numberB = undefined;
@@ -175,10 +153,7 @@ equalsBtn.addEventListener('click', () => {
 })
 
 divideBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     divideBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
     if (numberB !== undefined) {
         numberA = operate();
@@ -190,10 +165,7 @@ divideBtn.addEventListener('click', () => {
 })
 
 multiplyBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     multiplyBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
     if (numberB !== undefined) {
         numberA = operate();
@@ -205,10 +177,7 @@ multiplyBtn.addEventListener('click', () => {
 })
 
 subtractBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     subtractBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
     if (numberB !== undefined) {
         numberA = operate();
@@ -220,10 +189,7 @@ subtractBtn.addEventListener('click', () => {
 })
 
 addBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     addBtn.style.cssText = "background-color: white; color: rgb(236, 143, 12);";
     if (numberB !== undefined) {
         numberA = operate();
@@ -239,10 +205,7 @@ const backspaceBtn = document.querySelector('#backspace');
 const negPosBtn = document.querySelector('#negpos');
 
 clearBtn.addEventListener('click', () => {
-    divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-    addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+    clearColors();
     numberB = undefined;
     operator = undefined;
     numberA = 0;
@@ -257,10 +220,7 @@ backspaceBtn.addEventListener('click', () => {
             numberA = 0;
         }
     } else if (numberB === undefined || String(numberB) === '' || String(numberB) === '-0') {
-        divideBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-        multiplyBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-        subtractBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
-        addBtn.style.cssText = "background-color: rgb(236, 143, 12); color: white;";
+        clearColors();
         numberB = undefined;
         operator = undefined;
     } else {
